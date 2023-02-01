@@ -1,0 +1,170 @@
+:root {
+  --red: #f5222d;
+  --orange: #fa8c16;
+  --gold: #faad14;
+  --lime: #a0d911;
+  --green: #52c41a;
+  --cyan: #13c2c2;
+  --blue: #1890ff;
+  --hsl-blue: 209, 100%, 55%;
+  --blue-dark: #0f4c85;
+  --hsl-blue-dark: 209, 80%, 29%;
+  --purple: #722ed1;
+  --magenta: #eb2f96;
+  --hsl-magenta: 327, 82%, 55%;
+  font-size: 10px;
+
+  --cyan-light: #5cdbd3;
+  --blue-light: #69c0ff;
+  --hsl-blue-light: 205, 100%, 71%;
+  --yellow-light: #fffb8f;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
+  box-sizing: border-box;
+  user-select: none;
+  -webkit-user-drag: none;
+  font-family: "Courier New", Courier, monospace;
+}
+
+@mixin setCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+html,
+body {
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(
+    to right bottom,
+    var(--cyan-light),
+    var(--blue-light)
+  );
+  @include setCenter();
+}
+
+#app {
+  width: 100%;
+  height: 100%;
+  @include setCenter();
+}
+
+.container {
+  @include setCenter();
+  width: 50%;
+  max-width: 60rem;
+  min-width: 30rem;
+
+  background-color: hsl(var(--hsl-blue-dark), 0.4);
+  border-radius: 1rem;
+  padding: 5rem;
+  box-shadow: 0 0 1.5rem 0 var(--blue-dark);
+}
+
+.login {
+  width: 100%;
+  h1 {
+    text-align: center;
+    font-size: 4rem;
+    padding-bottom: 3rem;
+  }
+
+  form {
+    font-size: 1.6rem;
+    @include setCenter();
+    flex-direction: column;
+    gap: 2rem;
+    width: 100%;
+    .input-group {
+      width: 100%;
+      input {
+        font-size: 1.6rem;
+        width: calc(100% - 10.5rem);
+        background-color: hsl(var(--hsl-blue-dark), 0.4);
+        border: none;
+        outline: none;
+        border-radius: 1rem;
+        padding: 0.2rem 1rem;
+        &:focus {
+          box-shadow: 0 0 0 1px var(--blue-light);
+        }
+        &::placeholder {
+          color: hsl(var(--hsl-blue-light), 0.8);
+        }
+      }
+
+      &.success {
+        input {
+          &:focus {
+            box-shadow: 0 0 0 1px var(--cyan-light);
+          }
+        }
+        .message {
+          display: block;
+          color: var(--cyan);
+        }
+      }
+      &.error {
+        input {
+          &:focus {
+            box-shadow: 0 0 0 1px var(--magenta);
+          }
+        }
+        .message {
+          display: block;
+          color: hsl(var(--hsl-magenta), 0.7);
+        }
+      }
+      #password {
+        width: calc(100% - 10.5rem - 1rem);
+      }
+      .password_icon {
+        #eye {
+          display: inline;
+        }
+        #eye-slash {
+          display: none;
+        }
+        &.show{
+          #eye {
+            display: none;
+          }
+          #eye-slash {
+            display: inline;
+          }
+        }
+      }
+      span {
+        font-size: 1rem;
+        font-weight: 600;
+        line-height: 1.5rem;
+      }
+      .message {
+        display: none;
+      }
+    }
+
+    button {
+      font-size: 1.6rem;
+      width: 100%;
+      background-color: hsl(var(--hsl-blue-light), 0.4);
+      border: none;
+      border-radius: 1rem;
+      padding: 0.2rem;
+      transition: 0.2s;
+      cursor: pointer;
+      &:hover {
+        background-color: hsl(var(--hsl-blue-dark), 0.4);
+        color: var(--cyan);
+      }
+    }
+  }
+}
